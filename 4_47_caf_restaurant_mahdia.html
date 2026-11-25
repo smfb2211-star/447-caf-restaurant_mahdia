@@ -1,0 +1,2522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.47 Café-Restaurant | Zone Touristique, Mahdia</title>
+  <!-- Google Fonts for Editorial Luxury & Clean UI -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ==========================================================================
+       1. CSS VARIABLES & DESIGN TOKENS
+       ========================================================================== */
+    :root {
+      /* Palette: Dark Espresso, Warm Cream, Mediterranean Gold & Terracotta */
+      --bg-espresso: #120e0c;
+      --bg-espresso-light: #1c1613;
+      --bg-surface: #241b17;
+      --bg-cream: #f7f3ed;
+      --bg-cream-alt: #efe8de;
+
+      --text-light: #f9f6f1;
+      --text-muted-light: #c8beb4;
+      --text-dark: #1d1511;
+      --text-muted-dark: #5e5047;
+
+      --accent-gold: #d4a359;
+      --accent-gold-hover: #e5b76e;
+      --accent-terracotta: #c85a32;
+      --border-dark: rgba(212, 163, 89, 0.22);
+      --border-light: rgba(29, 21, 17, 0.12);
+
+      /* Typography */
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+      /* Layout & Radii */
+      --container-max: 1200px;
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-pill: 999px;
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    /* ==========================================================================
+       2. RESET & BASE STYLES
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-espresso);
+      color: var(--text-light);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition);
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: 92%;
+      max-width: var(--container-max);
+      margin: 0 auto;
+    }
+
+    .section-padding {
+      padding: 5.5rem 0;
+    }
+
+    /* Typography Helpers */
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.25rem, 4.5vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1.12;
+      margin-bottom: 1rem;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.9rem 1.85rem;
+      border-radius: var(--radius-pill);
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: var(--transition);
+    }
+
+    .btn-primary {
+      background-color: var(--accent-gold);
+      color: var(--bg-espresso);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-gold-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(212, 163, 89, 0.25);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      border-color: var(--border-dark);
+      color: var(--text-light);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent-gold);
+      background-color: rgba(212, 163, 89, 0.1);
+    }
+
+    /* ==========================================================================
+       3. STICKY NAVIGATION BAR (WITH PURE CSS MOBILE TOGGLE)
+       ========================================================================== */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(21, 16, 13, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-dark);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 78px;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .logo-mark {
+      font-family: var(--font-serif);
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: var(--accent-gold);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .logo-sub {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted-light);
+      border-left: 1px solid var(--border-dark);
+      padding-left: 0.65rem;
+      line-height: 1.3;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.2rem;
+    }
+
+    .nav-links a {
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--text-muted-light);
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-gold);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background-color: var(--accent-gold);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      padding: 0.6rem 1.3rem !important;
+      background-color: rgba(212, 163, 89, 0.14);
+      border: 1px solid var(--accent-gold);
+      border-radius: var(--radius-pill);
+      color: var(--accent-gold) !important;
+    }
+
+    .nav-cta:hover {
+      background-color: var(--accent-gold) !important;
+      color: var(--bg-espresso) !important;
+    }
+
+    .nav-cta::after {
+      display: none !important;
+    }
+
+    /* Mobile Hamburger Checkbox Hack */
+    #nav-toggle {
+      display: none;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    .hamburger span {
+      width: 26px;
+      height: 2px;
+      background-color: var(--accent-gold);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    /* ==========================================================================
+       4. HERO SECTION
+       ========================================================================== */
+    .hero {
+      position: relative;
+      min-height: calc(100vh - 78px);
+      display: flex;
+      align-items: center;
+      padding: 4rem 0;
+      background:
+        radial-gradient(circle at 80% 25%, rgba(196, 93, 59, 0.22), transparent 45%),
+        radial-gradient(circle at 15% 75%, rgba(212, 163, 89, 0.16), transparent 50%),
+        linear-gradient(135deg, #120d0a 0%, #1d1510 55%, #261913 100%);
+      border-bottom: 1px solid var(--border-dark);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 1rem;
+      background: rgba(212, 163, 89, 0.12);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius-pill);
+      font-size: 0.82rem;
+      color: var(--accent-gold);
+      margin-bottom: 1.5rem;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #4ade80;
+      box-shadow: 0 0 8px #4ade80;
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.8rem, 6vw, 4.75rem);
+      font-weight: 700;
+      line-height: 1.05;
+      margin-bottom: 1.35rem;
+      color: var(--text-light);
+    }
+
+    .hero-title span {
+      color: var(--accent-gold);
+      font-style: italic;
+    }
+
+    .hero-desc {
+      font-size: 1.08rem;
+      color: var(--text-muted-light);
+      max-width: 540px;
+      margin-bottom: 2.25rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2.75rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      padding-top: 1.75rem;
+      border-top: 1px solid var(--border-dark);
+    }
+
+    .meta-item strong {
+      display: block;
+      font-size: 0.95rem;
+      color: var(--text-light);
+    }
+
+    .meta-item span {
+      font-size: 0.84rem;
+      color: var(--text-muted-light);
+    }
+
+    /* Decorative Architectural Hero Visual Card */
+    .hero-showcase {
+      position: relative;
+      background: linear-gradient(160deg, var(--bg-surface), #16100d);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55);
+    }
+
+    .showcase-frame {
+      border: 1px solid rgba(212, 163, 89, 0.3);
+      border-radius: var(--radius-md);
+      padding: 2.2rem 1.75rem;
+      text-align: center;
+      background:
+        radial-gradient(circle at top, rgba(212, 163, 89, 0.14), transparent 70%);
+    }
+
+    .showcase-numeral {
+      font-family: var(--font-serif);
+      font-size: 5.5rem;
+      font-weight: 700;
+      line-height: 0.95;
+      color: var(--accent-gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .showcase-subtitle {
+      font-size: 0.8rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--text-muted-light);
+      margin-bottom: 1.75rem;
+    }
+
+    .showcase-highlights {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.9rem;
+      text-align: left;
+    }
+
+    .highlight-pill {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: var(--radius-sm);
+      padding: 0.85rem;
+    }
+
+    .highlight-pill span {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--accent-gold);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.2rem;
+    }
+
+    .highlight-pill p {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text-light);
+    }
+
+    /* ==========================================================================
+       5. ABOUT / THE VIBE SECTION (WARM MEDITERRANEAN CREAM CONTRAST)
+       ========================================================================== */
+    .about-section {
+      background-color: var(--bg-cream);
+      color: var(--text-dark);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    .about-section .section-title {
+      color: var(--text-dark);
+    }
+
+    .about-text {
+      color: var(--text-muted-dark);
+      font-size: 1.03rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .vibe-cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.15rem;
+    }
+
+    .vibe-card {
+      background-color: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      display: flex;
+      gap: 1.15rem;
+      align-items: flex-start;
+      box-shadow: 0 8px 24px rgba(29, 21, 17, 0.04);
+      transition: var(--transition);
+    }
+
+    .vibe-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent-terracotta);
+    }
+
+    .vibe-icon {
+      flex-shrink: 0;
+      width: 46px;
+      height: 46px;
+      border-radius: var(--radius-sm);
+      background: rgba(196, 93, 59, 0.12);
+      color: var(--accent-terracotta);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+    }
+
+    .vibe-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      color: var(--text-dark);
+    }
+
+    .vibe-card p {
+      font-size: 0.92rem;
+      color: var(--text-muted-dark);
+      line-height: 1.55;
+    }
+
+    /* ==========================================================================
+       6. CATEGORIZED MENU SECTION (PURE CSS RADIO-BUTTON TABS)
+       ========================================================================== */
+    .menu-section {
+      background-color: var(--bg-espresso-light);
+      border-top: 1px solid var(--border-dark);
+      border-bottom: 1px solid var(--border-dark);
+    }
+
+    .menu-header {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto 2.75rem;
+    }
+
+    .menu-header p {
+      color: var(--text-muted-light);
+    }
+
+    /* Hide Radio Inputs */
+    .menu-tabs input[type="radio"] {
+      display: none;
+    }
+
+    /* Tab Labels Bar */
+    .tab-labels {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 2.75rem;
+    }
+
+    .tab-labels label {
+      padding: 0.75rem 1.45rem;
+      border-radius: var(--radius-pill);
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-dark);
+      color: var(--text-muted-light);
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      user-select: none;
+    }
+
+    .tab-labels label:hover {
+      border-color: var(--accent-gold);
+      color: var(--text-light);
+    }
+
+    /* Active Tab Styling */
+    #tab-all:checked ~ .tab-labels label[for="tab-all"],
+    #tab-breakfast:checked ~ .tab-labels label[for="tab-breakfast"],
+    #tab-crepes:checked ~ .tab-labels label[for="tab-crepes"],
+    #tab-burgers:checked ~ .tab-labels label[for="tab-burgers"],
+    #tab-mains:checked ~ .tab-labels label[for="tab-mains"],
+    #tab-drinks:checked ~ .tab-labels label[for="tab-drinks"] {
+      background-color: var(--accent-gold);
+      color: var(--bg-espresso);
+      border-color: var(--accent-gold);
+      box-shadow: 0 8px 20px rgba(212, 163, 89, 0.25);
+    }
+
+    /* Unified Menu Grid & Pure CSS Category Filtering */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 1.75rem;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Show all items when "All Menu" is selected */
+    #tab-all:checked ~ .menu-grid .menu-card {
+      display: flex;
+      animation: fadeUp 0.4s ease forwards;
+    }
+
+    /* Hide non-matching cards when a specific category tab is checked */
+    #tab-breakfast:checked ~ .menu-grid .menu-card:not([data-cat="breakfast"]),
+    #tab-crepes:checked ~ .menu-grid .menu-card:not([data-cat="crepes"]),
+    #tab-burgers:checked ~ .menu-grid .menu-card:not([data-cat="burgers"]),
+    #tab-mains:checked ~ .menu-grid .menu-card:not([data-cat="mains"]),
+    #tab-drinks:checked ~ .menu-grid .menu-card:not([data-cat="drinks"]) {
+      display: none;
+    }
+
+    #tab-breakfast:checked ~ .menu-grid .menu-card[data-cat="breakfast"],
+    #tab-crepes:checked ~ .menu-grid .menu-card[data-cat="crepes"],
+    #tab-burgers:checked ~ .menu-grid .menu-card[data-cat="burgers"],
+    #tab-mains:checked ~ .menu-grid .menu-card[data-cat="mains"],
+    #tab-drinks:checked ~ .menu-grid .menu-card[data-cat="drinks"] {
+      display: flex;
+      animation: fadeUp 0.4s ease forwards;
+    }
+
+    .menu-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition);
+    }
+
+    .menu-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent-gold);
+      box-shadow: 0 16px 34px rgba(0, 0, 0, 0.38);
+    }
+
+    .menu-card-img-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background-color: #18120f;
+      border-bottom: 1px solid var(--border-dark);
+    }
+
+    .menu-card-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.55s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .menu-card:hover .menu-card-img-wrap img {
+      transform: scale(1.07);
+    }
+
+    .menu-badge-overlay {
+      position: absolute;
+      top: 0.85rem;
+      left: 0.85rem;
+      background: rgba(18, 14, 12, 0.84);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid var(--border-dark);
+      color: var(--accent-gold);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      border-radius: var(--radius-pill);
+    }
+
+    .menu-card-body {
+      padding: 1.45rem 1.5rem 1.6rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex-grow: 1;
+    }
+
+    .menu-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.85rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .menu-card h3 {
+      font-size: 1.12rem;
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--text-light);
+    }
+
+    .menu-price {
+      font-weight: 700;
+      font-size: 0.98rem;
+      color: var(--accent-gold);
+      white-space: nowrap;
+      background: rgba(212, 163, 89, 0.14);
+      border: 1px solid rgba(212, 163, 89, 0.25);
+      padding: 0.24rem 0.7rem;
+      border-radius: var(--radius-pill);
+    }
+
+    .menu-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted-light);
+      margin-bottom: 1.1rem;
+      line-height: 1.55;
+    }
+
+    .menu-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 0.85rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      gap: 0.5rem;
+    }
+
+    .menu-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-terracotta);
+    }
+
+    .menu-cat-label {
+      font-size: 0.74rem;
+      color: var(--text-muted-light);
+    }
+
+    .order-item-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.48rem 0.95rem;
+      border-radius: var(--radius-pill);
+      background-color: rgba(212, 163, 89, 0.16);
+      border: 1px solid var(--accent-gold);
+      color: var(--accent-gold);
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .order-item-btn:hover {
+      background-color: var(--accent-gold);
+      color: var(--bg-espresso);
+      transform: translateY(-1px);
+    }
+
+    /* ==========================================================================
+       7. LANGUAGE SWITCHER, AUTH BADGE, FLOATING ORDER BAR & MODALS
+       ========================================================================== */
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .lang-toggle {
+      display: inline-flex;
+      align-items: center;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius-pill);
+      padding: 0.2rem;
+      cursor: pointer;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted-light);
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 0.32rem 0.68rem;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .lang-btn.active {
+      background-color: var(--accent-gold);
+      color: var(--bg-espresso);
+    }
+
+    .account-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.48rem 0.95rem;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-dark);
+      color: var(--text-light);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .account-pill:hover {
+      border-color: var(--accent-gold);
+      color: var(--accent-gold);
+    }
+
+    .account-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #9ca3af;
+    }
+
+    .account-pill.signed-in .account-dot {
+      background: #4ade80;
+      box-shadow: 0 0 8px #4ade80;
+    }
+
+    /* Category Filter Pills (JS-enhanced for 46 bilingual items) */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.65rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .filter-pill {
+      padding: 0.68rem 1.35rem;
+      border-radius: var(--radius-pill);
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-dark);
+      color: var(--text-muted-light);
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .filter-pill:hover {
+      border-color: var(--accent-gold);
+      color: var(--text-light);
+    }
+
+    .filter-pill.active {
+      background-color: var(--accent-gold);
+      color: var(--bg-espresso);
+      border-color: var(--accent-gold);
+      box-shadow: 0 8px 20px rgba(212, 163, 89, 0.25);
+    }
+
+    /* Location & Footer Base Styles */
+    .location-section {
+      background-color: var(--bg-cream);
+      color: var(--text-dark);
+    }
+
+    .location-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .info-list {
+      margin-top: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .info-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .info-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-sm);
+      background: rgba(212, 163, 89, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .info-item h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 0.2rem;
+    }
+
+    .info-item p {
+      font-size: 0.92rem;
+      color: var(--text-muted-dark);
+    }
+
+    .map-card {
+      background: linear-gradient(145deg, #1d1511, #120d0a);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2rem;
+      color: var(--text-light);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pin-circle {
+      width: 68px;
+      height: 68px;
+      margin: 0 auto 1rem;
+      border-radius: 50%;
+      background: var(--accent-gold);
+      color: var(--bg-espresso);
+      font-family: var(--font-serif);
+      font-size: 1.65rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 0 10px rgba(212, 163, 89, 0.16);
+    }
+
+    .map-pin-visual h3 {
+      font-family: var(--font-serif);
+      font-size: 1.75rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .map-pin-visual p {
+      color: var(--text-muted-light);
+      font-size: 0.92rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1.75rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-dark);
+    }
+
+    .service-pills span {
+      font-size: 0.78rem;
+      padding: 0.35rem 0.8rem;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-dark);
+      color: var(--text-muted-light);
+    }
+
+    .footer-section {
+      background-color: var(--bg-espresso);
+      border-top: 1px solid var(--border-dark);
+      padding: 4.5rem 0 2.5rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 3.5rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--border-dark);
+    }
+
+    .reserve-form {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+    }
+
+    .reserve-form h3 {
+      font-family: var(--font-serif);
+      font-size: 1.85rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .reserve-form > p {
+      color: var(--text-muted-light);
+      font-size: 0.92rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted-light);
+      margin-bottom: 0.35rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.78rem 1rem;
+      border-radius: var(--radius-sm);
+      background: var(--bg-espresso);
+      border: 1px solid var(--border-dark);
+      color: var(--text-light);
+      font-family: inherit;
+      font-size: 0.92rem;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent-gold);
+    }
+
+    .footer-brand p {
+      color: var(--text-muted-light);
+      font-size: 0.92rem;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-links-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .footer-col h4 {
+      font-size: 0.92rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-gold);
+      margin-bottom: 0.85rem;
+    }
+
+    .footer-col ul li {
+      font-size: 0.9rem;
+      color: var(--text-muted-light);
+      margin-bottom: 0.5rem;
+    }
+
+    /* Floating Order Tray Button & Slide-Over Drawer */
+    .floating-order-btn {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 1100;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.95rem 1.45rem;
+      border-radius: var(--radius-pill);
+      background: linear-gradient(135deg, var(--accent-gold), #c28e3d);
+      color: var(--bg-espresso);
+      font-weight: 700;
+      font-size: 0.95rem;
+      border: none;
+      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.55);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .floating-order-btn:hover {
+      transform: translateY(-3px) scale(1.02);
+    }
+
+    .order-count-badge {
+      background: var(--bg-espresso);
+      color: var(--accent-gold);
+      padding: 0.2rem 0.6rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.82rem;
+    }
+
+    /* Modal & Drawer Backdrop */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 1200;
+      background: rgba(10, 7, 6, 0.78);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-card {
+      width: 100%;
+      max-width: 460px;
+      background: var(--bg-surface);
+      border: 1px solid var(--accent-gold);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      position: relative;
+      box-shadow: 0 25px 65px rgba(0, 0, 0, 0.65);
+      animation: fadeUp 0.28s ease;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.1rem;
+      right: 1.1rem;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-dark);
+      color: var(--text-light);
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+
+    .drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 1250;
+      background: rgba(10, 7, 6, 0.72);
+      backdrop-filter: blur(6px);
+      display: none;
+      justify-content: flex-end;
+    }
+
+    .drawer-backdrop.open {
+      display: flex;
+    }
+
+    .order-drawer {
+      width: 100%;
+      max-width: 450px;
+      height: 100%;
+      background: var(--bg-espresso-light);
+      border-left: 1px solid var(--border-dark);
+      display: flex;
+      flex-direction: column;
+      padding: 1.65rem;
+      overflow-y: auto;
+    }
+
+    .drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border-dark);
+      margin-bottom: 1.15rem;
+    }
+
+    .guest-banner {
+      background: rgba(212, 163, 89, 0.1);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius-sm);
+      padding: 0.85rem 1rem;
+      font-size: 0.85rem;
+      margin-bottom: 1.15rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .cart-items-list {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .cart-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem;
+    }
+
+    .cart-qty-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .qty-btn {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 1px solid var(--border-dark);
+      background: var(--bg-espresso);
+      color: var(--text-light);
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    /* Live Kitchen Order Ticket Tracker */
+    .kitchen-ticket {
+      margin-top: 1.25rem;
+      background: linear-gradient(160deg, #1b2419, #141a13);
+      border: 1px solid rgba(74, 222, 128, 0.45);
+      border-radius: var(--radius-md);
+      padding: 1.15rem;
+    }
+
+    .status-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.4rem;
+      margin-top: 0.85rem;
+    }
+
+    .status-step {
+      text-align: center;
+      font-size: 0.72rem;
+      padding: 0.4rem 0.25rem;
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-muted-light);
+      border: 1px solid transparent;
+    }
+
+    .status-step.active {
+      background: rgba(74, 222, 128, 0.18);
+      border-color: #4ade80;
+      color: #86efac;
+      font-weight: 700;
+    }
+
+    /* Toast Notification Banner */
+    .toast-banner {
+      position: fixed;
+      top: 92px;
+      right: 1.25rem;
+      z-index: 1400;
+      max-width: 360px;
+      background: var(--bg-surface);
+      border: 1px solid var(--accent-gold);
+      border-left: 4px solid #4ade80;
+      color: var(--text-light);
+      padding: 0.95rem 1.2rem;
+      border-radius: var(--radius-sm);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+      font-size: 0.88rem;
+      transform: translateX(130%);
+      transition: transform 0.32s ease;
+    }
+
+    .toast-banner.show {
+      transform: translateX(0);
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--accent-gold);
+    }
+
+    .footer-bottom {
+      padding-top: 1.75rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.85rem;
+      color: var(--text-muted-light);
+    }
+
+    /* ==========================================================================
+       9. RESPONSIVE MEDIA QUERIES
+       ========================================================================== */
+    @media (max-width: 960px) {
+      .hero-grid,
+      .about-grid,
+      .location-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 4.5rem 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 78px;
+        left: 0;
+        right: 0;
+        background-color: var(--bg-espresso);
+        border-bottom: 1px solid var(--border-dark);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease;
+      }
+
+      .nav-links li {
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 1rem 5%;
+      }
+
+      .nav-cta {
+        margin: 0.75rem 5%;
+        text-align: center;
+      }
+
+      /* Toggle Mobile Menu Open */
+      #nav-toggle:checked ~ .nav-links {
+        max-height: 360px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .showcase-highlights {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================================
+       STICKY NAVIGATION BAR
+       ======================================================================== -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#" class="brand-logo" aria-label="4.47 Café-Restaurant Home">
+        <span class="logo-mark">4.47</span>
+        <span class="logo-sub">Café &bull; Resto<br>Mahdia</span>
+      </a>
+
+      <!-- Pure CSS Mobile Menu Toggle -->
+      <input type="checkbox" id="nav-toggle" aria-hidden="true">
+      <label for="nav-toggle" class="hamburger" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+
+      <ul class="nav-links">
+        <li><a href="#about" data-i18n="nav_about">About &amp; Vibe</a></li>
+        <li><a href="#menu" data-i18n="nav_menu">Our Menu</a></li>
+        <li><a href="#location" data-i18n="nav_location">Hours &amp; Location</a></li>
+        <li><a href="#reserve" class="nav-cta" data-i18n="nav_reserve">Reserve a Table</a></li>
+      </ul>
+
+      <div class="nav-controls">
+        <!-- Bilingual Toggle (EN / FR) -->
+        <div class="lang-toggle" role="group" aria-label="Language Switcher">
+          <button type="button" class="lang-btn active" id="btn-lang-en" onclick="setLanguage('en')">EN</button>
+          <button type="button" class="lang-btn" id="btn-lang-fr" onclick="setLanguage('fr')">FR</button>
+        </div>
+
+        <!-- Guest Sign-In Status Pill -->
+        <button type="button" class="account-pill" id="nav-account-btn" onclick="openAuthModal()">
+          <span class="account-dot"></span>
+          <span id="nav-account-label">Sign In</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       HERO SECTION
+       ======================================================================== -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="hero-badge">
+          <span class="status-dot"></span>
+          <span data-i18n="hero_badge">Open Daily 07:00 – 00:00 &bull; Zone Touristique, Mahdia</span>
+        </div>
+        <h1 class="hero-title" data-i18n="hero_title">
+          Morning Espresso to <span>Midnight</span> Mediterranean Dining.
+        </h1>
+        <p class="hero-desc" data-i18n="hero_desc">
+          Located on Avenue Taher Sfar in Hiboun, 4.47 blends modern lounge elegance with generous Tunisian &amp; international cuisine. Tap any dish below to sign in and send your order straight to our kitchen.
+        </p>
+        <div class="hero-actions">
+          <a href="#menu" class="btn btn-primary" data-i18n="hero_cta_menu">Explore Full Menu &amp; Order</a>
+          <a href="#reserve" class="btn btn-outline" data-i18n="hero_cta_reserve">Book a Terrace Table</a>
+        </div>
+        <div class="hero-meta">
+          <div class="meta-item">
+            <strong>Avenue Taher Sfar</strong>
+            <span data-i18n="meta_loc">Hiboun, Mahdia 5111</span>
+          </div>
+          <div class="meta-item">
+            <strong>07:00 AM – 12:00 AM</strong>
+            <span data-i18n="meta_hours">7 Days a Week</span>
+          </div>
+          <div class="meta-item">
+            <strong data-i18n="meta_service_title">Direct Kitchen Order</strong>
+            <span data-i18n="meta_service_sub">Table Service, Takeaway &amp; Delivery</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-showcase">
+        <div class="showcase-frame">
+          <div class="showcase-numeral">4.47</div>
+          <div class="showcase-subtitle" data-i18n="showcase_sub">Café &bull; Restaurant &bull; Lounge</div>
+          <div class="showcase-highlights">
+            <div class="highlight-pill">
+              <span data-i18n="hl1_title">Morning Ritual</span>
+              <p data-i18n="hl1_desc">Formule Berbère &amp; Matin-Salé</p>
+            </div>
+            <div class="highlight-pill">
+              <span data-i18n="hl2_title">Sweet &amp; Savory</span>
+              <p data-i18n="hl2_desc">Crêpes, Gaufres &amp; Pizzas</p>
+            </div>
+            <div class="highlight-pill">
+              <span data-i18n="hl3_title">Mahdia Catch</span>
+              <p data-i18n="hl3_desc">Daurade, Seafood &amp; Grills</p>
+            </div>
+            <div class="highlight-pill">
+              <span data-i18n="hl4_title">Instant Order</span>
+              <p data-i18n="hl4_desc">Sign in &amp; alert kitchen live</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       CATEGORIZED MENU SECTION WITH PHOTOGRAPHS & INTERACTIVE ORDERING
+       ======================================================================== -->
+  <section id="menu" class="menu-section section-padding">
+    <div class="container">
+      <div class="menu-header">
+        <span class="eyebrow" data-i18n="menu_eyebrow">La Carte Complète &bull; 4.47</span>
+        <h2 class="section-title" data-i18n="menu_title">Our Full Illustrated Menu</h2>
+        <p data-i18n="menu_subtitle">Tap any dish to sign in and send your order directly to the 4.47 restaurant kitchen—priced in Tunisian Dinars (TND).</p>
+      </div>
+
+      <!-- Interactive Category Filter Bar -->
+      <div class="filter-bar" id="menu-filter-bar" role="tablist"></div>
+
+      <!-- Dynamically Rendered Bilingual 46-Item Visual Menu Grid -->
+      <div class="menu-grid" id="menu-grid"></div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       ABOUT / THE VIBE SECTION
+       ======================================================================== -->
+  <section id="about" class="about-section section-padding">
+    <div class="container about-grid">
+      <div>
+        <span class="eyebrow" data-i18n="about_eyebrow">The 4.47 Experience</span>
+        <h2 class="section-title" data-i18n="about_title">Designed for Every Hour of the Mahdia Day.</h2>
+        <p class="about-text" data-i18n="about_p1">
+          Whether you are starting your morning with a freshly pulled espresso after a walk near the beach, gathering with friends for a relaxed lunch, or unwinding under the evening lights on Avenue Taher Sfar, 4.47 adapts to your pace.
+        </p>
+        <p class="about-text" data-i18n="about_p2">
+          Our spacious contemporary lounge and breezy outdoor terrace create an inviting social hub in the heart of Hiboun’s tourist district.
+        </p>
+      </div>
+
+      <div class="vibe-cards">
+        <div class="vibe-card">
+          <div class="vibe-icon" aria-hidden="true">&#9728;</div>
+          <div>
+            <h3 data-i18n="vibe1_title">Sunny Outdoor Terrace</h3>
+            <p data-i18n="vibe1_desc">Soak up the Mediterranean coastal air on our spacious street-side terrace—ideal for morning formulas, afternoon crêpes, and people-watching.</p>
+          </div>
+        </div>
+
+        <div class="vibe-card">
+          <div class="vibe-icon" aria-hidden="true">&#9749;</div>
+          <div>
+            <h3 data-i18n="vibe2_title">Spacious Modern Interior</h3>
+            <p data-i18n="vibe2_desc">Warm espresso tones, plush seating, and ambient lighting offer a comfortable retreat for remote work sessions, family meals, or evening catch-ups.</p>
+          </div>
+        </div>
+
+        <div class="vibe-card">
+          <div class="vibe-icon" aria-hidden="true">&#127869;</div>
+          <div>
+            <h3 data-i18n="vibe3_title">Generous All-Day Kitchen</h3>
+            <p data-i18n="vibe3_desc">From savory Tunisian-inspired brunch platters to fresh Mahdia seafood, wood-charred grills, and indulgent desserts served until midnight.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       LOCATION & OPENING HOURS SECTION
+       ======================================================================== -->
+  <section id="location" class="location-section section-padding">
+    <div class="container location-grid">
+      <div class="info-box">
+        <span class="eyebrow" data-i18n="loc_eyebrow">Visit Us</span>
+        <h2 class="section-title" data-i18n="loc_title">Location &amp; Hours</h2>
+        <p style="color: var(--text-muted-dark);" data-i18n="loc_intro">
+          Conveniently situated along Mahdia’s vibrant coastal avenue, just minutes from the beach and major hotels.
+        </p>
+
+        <div class="info-list">
+          <div class="info-item">
+            <div class="info-badge" aria-hidden="true">&#128205;</div>
+            <div>
+              <h4 data-i18n="loc_addr_label">Address</h4>
+              <p>Avenue Taher Sfar, Zone Touristique (Hiboun), Mahdia 5111, Tunisia</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-badge" aria-hidden="true">&#128337;</div>
+            <div>
+              <h4 data-i18n="loc_hours_label">Opening Hours</h4>
+              <p data-i18n="loc_hours_val">Open Every Day: <strong>7:00 AM – 12:00 AM (Midnight)</strong></p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-badge" aria-hidden="true">&#128757;</div>
+            <div>
+              <h4 data-i18n="loc_srv_label">Dine-In, Takeaway &amp; Delivery</h4>
+              <p data-i18n="loc_srv_val">Full table service indoors &amp; on the terrace, quick counter takeaway, and local delivery across Hiboun &amp; Mahdia.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="map-card">
+        <div class="map-pin-visual">
+          <div class="pin-circle">4.47</div>
+          <h3>Avenue Taher Sfar</h3>
+          <p>Zone Touristique, Hiboun &bull; Mahdia 5111</p>
+          <a href="https://maps.google.com/?q=4.47+Avenue+Taher+Sfar+Mahdia" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-i18n="loc_map_btn">
+            Open in Google Maps
+          </a>
+        </div>
+
+        <div class="service-pills">
+          <span data-i18n="pill_terrace">Outdoor Terrace</span>
+          <span>Free Wi-Fi</span>
+          <span data-i18n="pill_family">Family Friendly</span>
+          <span data-i18n="pill_takeaway">Takeaway</span>
+          <span data-i18n="pill_delivery">Local Delivery</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       FOOTER & RESERVATION INQUIRY SECTION
+       ======================================================================== -->
+  <footer id="reserve" class="footer-section">
+    <div class="container">
+      <div class="footer-grid">
+
+        <!-- Reservation / Contact Inquiry Form -->
+        <form class="reserve-form" id="reservation-form">
+          <h3 data-i18n="res_title">Reserve a Table or Inquire</h3>
+          <p data-i18n="res_sub">Planning a group brunch, birthday dinner, or takeaway order? Send us a quick request.</p>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="guest-name" data-i18n="res_name">Full Name</label>
+              <input type="text" id="guest-name" name="name" placeholder="e.g., Amine Ben Ali" required>
+            </div>
+            <div class="form-group">
+              <label for="guest-phone" data-i18n="res_phone">Phone Number (+216)</label>
+              <input type="tel" id="guest-phone" name="phone" placeholder="+216 XX XXX XXX" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="visit-date" data-i18n="res_date">Preferred Date &amp; Time</label>
+              <input type="text" id="visit-date" name="datetime" placeholder="e.g., Friday at 8:30 PM" required>
+            </div>
+            <div class="form-group">
+              <label for="party-size" data-i18n="res_guests">Guests / Service</label>
+              <select id="party-size" name="guests">
+                <option value="2">2 Guests — Table</option>
+                <option value="4">4 Guests — Table</option>
+                <option value="6+">6+ Guests — Large Group</option>
+                <option value="terrace">Terrace Seating Request</option>
+                <option value="takeaway">Takeaway / Delivery Inquiry</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="special-notes" data-i18n="res_notes">Special Requests</label>
+            <textarea id="special-notes" name="notes" rows="2" placeholder="Terrace preference, celebration details, or dietary notes..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%;" data-i18n="res_btn">Send Reservation Request</button>
+        </form>
+
+        <!-- Brand & Quick Navigation Links -->
+        <div class="footer-info">
+          <div class="footer-brand">
+            <a href="#" class="brand-logo">
+              <span class="logo-mark">4.47</span>
+              <span class="logo-sub">Café &bull; Resto<br>Mahdia</span>
+            </a>
+            <p data-i18n="footer_desc">
+              Your all-day Mediterranean café and restaurant destination on Avenue Taher Sfar, Hiboun. Serving specialty coffee, sweet &amp; savory crêpes, grills, and fresh Mahdia seafood from 7:00 AM until midnight.
+            </p>
+          </div>
+
+          <div class="footer-links-grid">
+            <div class="footer-col">
+              <h4 data-i18n="footer_links_h">Quick Links</h4>
+              <ul>
+                <li><a href="#about" data-i18n="nav_about">About &amp; The Vibe</a></li>
+                <li><a href="#menu" data-i18n="cat_breakfast">Breakfast &amp; Brunch</a></li>
+                <li><a href="#menu" data-i18n="cat_crepes">Crêpes &amp; Waffles</a></li>
+                <li><a href="#menu" data-i18n="cat_mains">Mains &amp; Seafood</a></li>
+                <li><a href="#location" data-i18n="nav_location">Location &amp; Hours</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-col">
+              <h4 data-i18n="footer_info_h">Mahdia Info</h4>
+              <ul>
+                <li>Av. Taher Sfar, Hiboun</li>
+                <li>Zone Touristique, 5111</li>
+                <li>Daily: 07:00 – 00:00</li>
+                <li data-i18n="footer_dine">Dine-in &bull; Terrace</li>
+                <li data-i18n="footer_deliv">Takeaway &amp; Delivery</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 4.47 Café-Restaurant Mahdia. All rights reserved.</p>
+        <p>Avenue Taher Sfar, Zone Touristique, Mahdia, Tunisia</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       FLOATING LIVE ORDER TRAY BUTTON
+       ======================================================================== -->
+  <button type="button" class="floating-order-btn" onclick="openOrderDrawer()">
+    <span>&#127860;</span>
+    <span id="floating-order-label">My Order / Resto</span>
+    <span class="order-count-badge" id="floating-order-count">0</span>
+  </button>
+
+  <!-- ========================================================================
+       SIGN-IN / QUICK GUEST ACCOUNT MODAL
+       ======================================================================== -->
+  <div class="modal-backdrop" id="auth-modal" aria-modal="true" role="dialog">
+    <div class="modal-card">
+      <button type="button" class="modal-close" onclick="closeAuthModal()" aria-label="Close">&times;</button>
+      <span class="eyebrow" data-i18n="auth_eyebrow">4.47 Direct Kitchen Access</span>
+      <h3 style="font-family: var(--font-serif); font-size: 1.9rem; margin-bottom: 0.45rem;" data-i18n="auth_title">Sign In to Order</h3>
+      <p style="color: var(--text-muted-light); font-size: 0.9rem; margin-bottom: 1.25rem;" id="auth-subtitle" data-i18n="auth_sub">
+        Sign in once so our kitchen knows your name, phone, and table or delivery option whenever you tap a dish.
+      </p>
+
+      <form id="auth-form">
+        <div class="form-group">
+          <label for="auth-name" data-i18n="auth_name_lbl">Your Name</label>
+          <input type="text" id="auth-name" placeholder="e.g., Yassine / Sarah" required>
+        </div>
+        <div class="form-group">
+          <label for="auth-phone" data-i18n="auth_phone_lbl">Phone Number (+216)</label>
+          <input type="tel" id="auth-phone" placeholder="+216 XX XXX XXX" required>
+        </div>
+        <div class="form-group">
+          <label for="auth-service" data-i18n="auth_service_lbl">Table Number or Service Type</label>
+          <select id="auth-service">
+            <option value="Table 01 (Terrace)">Table 01 — Terrace / Terrasse</option>
+            <option value="Table 04 (Terrace)">Table 04 — Terrace / Terrasse</option>
+            <option value="Table 08 (Lounge)">Table 08 — Indoor Lounge / Salle</option>
+            <option value="Table 12 (Lounge)">Table 12 — Indoor Lounge / Salle</option>
+            <option value="Takeaway / À Emporter">Takeaway / À Emporter</option>
+            <option value="Delivery Mahdia / Livraison">Local Delivery Mahdia / Livraison</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;" data-i18n="auth_submit_btn">
+          Sign In &amp; Continue Order
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       LIVE RESTAURANT ORDER DRAWER & KITCHEN TICKET TRACKER
+       ======================================================================== -->
+  <div class="drawer-backdrop" id="order-drawer-backdrop" onclick="if(event.target===this) closeOrderDrawer()">
+    <aside class="order-drawer" aria-label="Order Tray and Restaurant Kitchen Link">
+      <div class="drawer-header">
+        <div>
+          <span class="eyebrow" style="margin-bottom: 0.15rem;">4.47 Kitchen Link</span>
+          <h3 style="font-family: var(--font-serif); font-size: 1.65rem;" data-i18n="drawer_title">Your Restaurant Order</h3>
+        </div>
+        <button type="button" class="modal-close" style="position: static;" onclick="closeOrderDrawer()">&times;</button>
+      </div>
+
+      <!-- Signed-In Customer Banner -->
+      <div class="guest-banner" id="drawer-guest-banner"></div>
+
+      <!-- Selected Items List -->
+      <div class="cart-items-list" id="cart-items-list"></div>
+
+      <!-- Total & Send to Kitchen Button -->
+      <div style="border-top: 1px solid var(--border-dark); padding-top: 1rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <span style="color: var(--text-muted-light); font-weight: 600;" data-i18n="drawer_total">Total Amount</span>
+          <strong style="font-size: 1.35rem; color: var(--accent-gold);" id="cart-total-price">0.0 TND</strong>
+        </div>
+
+        <button type="button" class="btn btn-primary" style="width: 100%;" id="send-kitchen-btn" onclick="sendOrderToKitchen()" data-i18n="drawer_send_btn">
+          Send Order to 4.47 Kitchen Now
+        </button>
+      </div>
+
+      <!-- Live Kitchen Ticket Confirmation Box -->
+      <div id="live-kitchen-ticket-container"></div>
+    </aside>
+  </div>
+
+  <!-- Live Toast Notification -->
+  <div class="toast-banner" id="toast-banner" role="status" aria-live="polite"></div>
+
+  <script>
+    /* ==========================================================================
+       1. BILINGUAL DICTIONARY (ENGLISH & FRENCH)
+       ========================================================================== */
+    const I18N = {
+      en: {
+        nav_about: "About & Vibe",
+        nav_menu: "Our Menu",
+        nav_location: "Hours & Location",
+        nav_reserve: "Reserve a Table",
+        sign_in: "Sign In",
+        hero_badge: "Open Daily 07:00 – 00:00 • Zone Touristique, Mahdia",
+        hero_title: "Morning Espresso to <span>Midnight</span> Mediterranean Dining.",
+        hero_desc: "Located on Avenue Taher Sfar in Hiboun, 4.47 blends modern lounge elegance with generous Tunisian & international cuisine. Tap any dish below to sign in and send your order straight to our kitchen.",
+        hero_cta_menu: "Explore Full Menu & Order",
+        hero_cta_reserve: "Book a Terrace Table",
+        meta_loc: "Hiboun, Mahdia 5111",
+        meta_hours: "7 Days a Week",
+        meta_service_title: "Direct Kitchen Order",
+        meta_service_sub: "Table Service, Takeaway & Delivery",
+        showcase_sub: "Café • Restaurant • Lounge",
+        hl1_title: "Morning Ritual",
+        hl1_desc: "Formule Berbère & Matin-Salé",
+        hl2_title: "Sweet & Savory",
+        hl2_desc: "Crêpes, Gaufres & Pizzas",
+        hl3_title: "Mahdia Catch",
+        hl3_desc: "Daurade, Seafood & Grills",
+        hl4_title: "Instant Order",
+        hl4_desc: "Sign in & alert kitchen live",
+        menu_eyebrow: "La Carte Complète • 4.47",
+        menu_title: "Our Full Illustrated Menu",
+        menu_subtitle: "Tap any dish to sign in and send your order directly to the 4.47 restaurant kitchen—priced in Tunisian Dinars (TND).",
+        cat_all: "All Menu",
+        cat_breakfast: "Breakfast & Brunch",
+        cat_crepes: "Crêpes & Waffles",
+        cat_pizzas: "Pizzas & Calzones",
+        cat_burgers: "Burgers, Tacos & Makloub",
+        cat_mains: "Pasta, Grills & Seafood",
+        cat_drinks: "Coffee, Juices & Lounge",
+        order_btn: "+ Order",
+        about_eyebrow: "The 4.47 Experience",
+        about_title: "Designed for Every Hour of the Mahdia Day.",
+        about_p1: "Whether you are starting your morning with a freshly pulled espresso after a walk near the beach, gathering with friends for a relaxed lunch, or unwinding under the evening lights on Avenue Taher Sfar, 4.47 adapts to your pace.",
+        about_p2: "Our spacious contemporary lounge and breezy outdoor terrace create an inviting social hub in the heart of Hiboun’s tourist district.",
+        vibe1_title: "Sunny Outdoor Terrace",
+        vibe1_desc: "Soak up the Mediterranean coastal air on our spacious street-side terrace—ideal for morning formulas, afternoon crêpes, and people-watching.",
+        vibe2_title: "Spacious Modern Interior",
+        vibe2_desc: "Warm espresso tones, plush seating, and ambient lighting offer a comfortable retreat for remote work sessions, family meals, or evening catch-ups.",
+        vibe3_title: "Generous All-Day Kitchen",
+        vibe3_desc: "From savory Tunisian-inspired brunch platters to fresh Mahdia seafood, wood-charred grills, and indulgent desserts served until midnight.",
+        loc_eyebrow: "Visit Us",
+        loc_title: "Location & Hours",
+        loc_intro: "Conveniently situated along Mahdia’s vibrant coastal avenue, just minutes from the beach and major hotels.",
+        loc_addr_label: "Address",
+        loc_hours_label: "Opening Hours",
+        loc_hours_val: "Open Every Day: <strong>7:00 AM – 12:00 AM (Midnight)</strong>",
+        loc_srv_label: "Dine-In, Takeaway & Delivery",
+        loc_srv_val: "Full table service indoors & on the terrace, quick counter takeaway, and local delivery across Hiboun & Mahdia.",
+        loc_map_btn: "Open in Google Maps",
+        pill_terrace: "Outdoor Terrace",
+        pill_family: "Family Friendly",
+        pill_takeaway: "Takeaway",
+        pill_delivery: "Local Delivery",
+        res_title: "Reserve a Table or Inquire",
+        res_sub: "Planning a group brunch, birthday dinner, or takeaway order? Send us a quick request.",
+        res_name: "Full Name",
+        res_phone: "Phone Number (+216)",
+        res_date: "Preferred Date & Time",
+        res_guests: "Guests / Service",
+        res_notes: "Special Requests",
+        res_btn: "Send Reservation Request",
+        footer_desc: "Your all-day Mediterranean café and restaurant destination on Avenue Taher Sfar, Hiboun. Serving specialty coffee, sweet & savory crêpes, grills, and fresh Mahdia seafood from 7:00 AM until midnight.",
+        footer_links_h: "Quick Links",
+        footer_info_h: "Mahdia Info",
+        footer_dine: "Dine-in • Terrace",
+        footer_deliv: "Takeaway & Delivery",
+        floating_order: "My Order / Resto",
+        auth_eyebrow: "4.47 Direct Kitchen Access",
+        auth_title: "Sign In to Order",
+        auth_sub: "Sign in once so our kitchen knows your name, phone, and table or delivery option whenever you tap a dish.",
+        auth_name_lbl: "Your Name",
+        auth_phone_lbl: "Phone Number (+216)",
+        auth_service_lbl: "Table Number or Service Type",
+        auth_submit_btn: "Sign In & Continue Order",
+        drawer_title: "Your Restaurant Order",
+        drawer_total: "Total Amount",
+        drawer_send_btn: "Send Order to 4.47 Kitchen Now",
+        empty_cart: "Your order tray is empty. Tap any dish on the menu to add it!",
+        not_signed_banner: "Not signed in yet. Sign in so the 4.47 restaurant receives your order.",
+        sign_out: "Sign Out",
+        ticket_title: "LIVE KITCHEN TICKET SENT TO 4.47",
+        step_sent: "1. Sent to Resto",
+        step_prep: "2. Preparing",
+        step_ready: "3. Ready!",
+        toast_added: "Added to your order & synced with 4.47 Resto:",
+        toast_sent: "Order dispatched directly to 4.47 Kitchen! Ticket #",
+        toast_res: "Reservation request received by 4.47 Mahdia! We will confirm shortly."
+      },
+      fr: {
+        nav_about: "Ambiance & Lieu",
+        nav_menu: "Notre Carte",
+        nav_location: "Horaires & Adresse",
+        nav_reserve: "Réserver une Table",
+        sign_in: "Connexion",
+        hero_badge: "Ouvert Tous les Jours 07h00 – 00h00 • Zone Touristique, Mahdia",
+        hero_title: "De l'Expresso du Matin aux Dîners <span>Méditerranéens</span> jusqu'à Minuit.",
+        hero_desc: "Situé sur l'Avenue Taher Sfar à Hiboun, le 4.47 allie élégance lounge et cuisine tunisienne & internationale généreuse. Touchez un plat pour vous connecter et envoyer votre commande en cuisine.",
+        hero_cta_menu: "Voir la Carte & Commander",
+        hero_cta_reserve: "Réserver en Terrasse",
+        meta_loc: "Hiboun, Mahdia 5111",
+        meta_hours: "7 Jours / 7",
+        meta_service_title: "Commande Directe Cuisine",
+        meta_service_sub: "Sur Place, À Emporter & Livraison",
+        showcase_sub: "Café • Restaurant • Lounge",
+        hl1_title: "Rituel du Matin",
+        hl1_desc: "Formule Berbère & Matin-Salé",
+        hl2_title: "Sucré & Salé",
+        hl2_desc: "Crêpes, Gaufres & Pizzas",
+        hl3_title: "Pêche de Mahdia",
+        hl3_desc: "Daurade, Fruits de Mer & Grillades",
+        hl4_title: "Commande Instantanée",
+        hl4_desc: "Connectez-vous & alertez le resto",
+        menu_eyebrow: "La Carte Complète • 4.47",
+        menu_title: "Notre Carte Illustrée Complète",
+        menu_subtitle: "Touchez un plat pour vous connecter et transmettre votre commande directement à la cuisine du 4.47 — prix en Dinars Tunisiens (TND).",
+        cat_all: "Toute la Carte",
+        cat_breakfast: "Petit-Déj & Brunch",
+        cat_crepes: "Crêpes & Gaufres",
+        cat_pizzas: "Pizzas & Calzones",
+        cat_burgers: "Burgers, Tacos & Makloub",
+        cat_mains: "Pâtes, Grillades & Mer",
+        cat_drinks: "Cafés, Jus & Lounge",
+        order_btn: "+ Commander",
+        about_eyebrow: "L'Expérience 4.47",
+        about_title: "Pensé pour Chaque Instant de Votre Journée à Mahdia.",
+        about_p1: "Que vous commenciez la journée par un expresso fraîchement extrait près de la plage, partagiez un déjeuner convivial ou profitiez des soirées animées de l'Avenue Taher Sfar, le 4.47 s'adapte à votre rythme.",
+        about_p2: "Notre salon contemporain spacieux et notre terrasse ensoleillée offrent un lieu de rencontre incontournable au cœur de la zone touristique de Hiboun.",
+        vibe1_title: "Terrasse Extérieure Ensoleillée",
+        vibe1_desc: "Profitez de la brise marine méditerranéenne sur notre grande terrasse — idéale pour les petits-déjeuners, crêpes et pauses café.",
+        vibe2_title: "Intérieur Moderne & Spacieux",
+        vibe2_desc: "Tons expresso chaleureux, assises confortables et éclairage tamisé pour vos repas en famille, rendez-vous ou soirées entre amis.",
+        vibe3_title: "Cuisine Généreuse Non-Stop",
+        vibe3_desc: "Des formules brunch tunisiennes aux fruits de mer frais de Mahdia, grillades au feu de bois et desserts gourmands servis jusqu'à minuit.",
+        loc_eyebrow: "Nous Trouver",
+        loc_title: "Adresse & Horaires",
+        loc_intro: "Idéalement situé sur l'avenue côtière de Mahdia, à quelques minutes de la plage et des hôtels.",
+        loc_addr_label: "Adresse",
+        loc_hours_label: "Horaires d'Ouverture",
+        loc_hours_val: "Ouvert Tous les Jours : <strong>07h00 – 00h00 (Minuit)</strong>",
+        loc_srv_label: "Sur Place, À Emporter & Livraison",
+        loc_srv_val: "Service complet en salle et en terrasse, vente à emporter rapide et livraison locale sur Hiboun & Mahdia.",
+        loc_map_btn: "Ouvrir dans Google Maps",
+        pill_terrace: "Terrasse Extérieure",
+        pill_family: "Ambiance Familiale",
+        pill_takeaway: "À Emporter",
+        pill_delivery: "Livraison Locale",
+        res_title: "Réserver une Table ou Nous Contacter",
+        res_sub: "Un brunch en groupe, un dîner d'anniversaire ou une commande à emporter ? Envoyez-nous votre demande.",
+        res_name: "Nom Complet",
+        res_phone: "Numéro de Téléphone (+216)",
+        res_date: "Date & Heure Souhaitées",
+        res_guests: "Personnes / Service",
+        res_notes: "Demandes Spéciales",
+        res_btn: "Envoyer la Réservation",
+        footer_desc: "Votre café-restaurant méditerranéen sur l'Avenue Taher Sfar, Hiboun. Cafés de spécialité, crêpes sucrées & salées, grillades et fruits de mer frais de Mahdia de 07h00 à minuit.",
+        footer_links_h: "Liens Rapides",
+        footer_info_h: "Infos Mahdia",
+        footer_dine: "Sur Place • Terrasse",
+        footer_deliv: "À Emporter & Livraison",
+        floating_order: "Ma Commande / Resto",
+        auth_eyebrow: "Accès Direct Cuisine 4.47",
+        auth_title: "Connectez-vous pour Commander",
+        auth_sub: "Identifiez-vous une seule fois pour que notre cuisine connaisse votre nom, téléphone et table ou livraison dès que vous choisissez un plat.",
+        auth_name_lbl: "Votre Nom",
+        auth_phone_lbl: "Numéro de Téléphone (+216)",
+        auth_service_lbl: "Numéro de Table ou Type de Service",
+        auth_submit_btn: "Se Connecter & Continuer",
+        drawer_title: "Votre Commande Resto",
+        drawer_total: "Total à Payer",
+        drawer_send_btn: "Envoyer la Commande au Resto 4.47",
+        empty_cart: "Votre panier est vide. Touchez un plat sur la carte pour l'ajouter !",
+        not_signed_banner: "Non connecté. Identifiez-vous pour transmettre la commande au restaurant 4.47.",
+        sign_out: "Déconnexion",
+        ticket_title: "TICKET CUISINE ENVOYÉ AU 4.47",
+        step_sent: "1. Reçu par Resto",
+        step_prep: "2. En Préparation",
+        step_ready: "3. Prêt !",
+        toast_added: "Ajouté à votre commande & transmis au Resto 4.47 :",
+        toast_sent: "Commande envoyée en cuisine 4.47 ! Ticket #",
+        toast_res: "Demande de réservation reçue par le 4.47 Mahdia ! Confirmation rapide."
+      }
+    };
+
+    /* ==========================================================================
+       2. EXPANDED 46-ITEM BILINGUAL MENU DATASET WITH HIGH-RES PHOTOGRAPHS
+       ========================================================================== */
+    const MENU_ITEMS = [
+      // BREAKFAST & BRUNCH (7)
+      { id: 1, cat: "breakfast", price: 16.5, img: "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "Bestseller", fr: "Best-Seller" },
+        name: { en: "Formule Matin-Salé", fr: "Formule Matin-Salé" },
+        desc: { en: "Herb omelet or fried eggs, smoked turkey slices, aged gruyère, mini savory brioche, fresh orange juice & hot coffee.", fr: "Omelette aux herbes ou œufs au plat, dinde fumée, gruyère affiné, mini brioche salée, jus d'orange frais & café au choix." } },
+      { id: 2, cat: "breakfast", price: 18.0, img: "https://images.unsplash.com/photo-1590412200988-a436970781fa?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "Tunisian Classic", fr: "Classique Tunisien" },
+        name: { en: "Formule Berbère", fr: "Formule Berbère" },
+        desc: { en: "Traditional Tunisian chakchouka, warm tabouna bread, Mahdia olive oil, honey, bsissa, ricotta, fresh juice & mint tea or espresso.", fr: "Chakchouka tunisienne traditionnelle, pain tabouna chaud, huile d'olive de Mahdia, miel, bsissa, ricotta, jus frais & thé ou café." } },
+      { id: 3, cat: "breakfast", price: 24.5, img: "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "Royal Brunch", fr: "Brunch Royal" },
+        name: { en: "Formule 4.47 Royale", fr: "Formule 4.47 Royale" },
+        desc: { en: "Grand sweet & savory spread: mini pancakes, eggs benedict, avocado toast, cheese & charcuterie board, fresh fruit, juice & coffee.", fr: "Festin sucré-salé : mini pancakes, œufs bénédicte, toast avocat, plateau fromages & charcuterie, fruits frais, jus & café." } },
+      { id: 4, cat: "breakfast", price: 9.5, img: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "Morning Express", fr: "Matin Express" },
+        name: { en: "Petit-Déjeuner Continental", fr: "Petit-Déjeuner Continental" },
+        desc: { en: "Crispy butter croissant, toasted baguette, artisanal jam, butter, freshly squeezed orange juice, and espresso or capucin.", fr: "Croissant pur beurre croustillant, baguette grillée, confiture artisanale, beurre, jus d'orange pressé et expresso ou capucin." } },
+      { id: 5, cat: "breakfast", price: 13.5, img: "https://images.unsplash.com/photo-1510693206972-df098062cb71?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "Made to Order", fr: "Minute" },
+        name: { en: "Omelette Fromage & Champignons", fr: "Omelette Fromage & Champignons" },
+        desc: { en: "Fluffy three-egg French omelet with sautéed mushrooms, melted emmental & mozzarella, toasted sourdough & cherry tomatoes.", fr: "Omelette baveuse à trois œufs, champignons sautés, emmental & mozzarella fondants, pain grillé et tomates cerises." } },
+      { id: 6, cat: "breakfast", price: 14.5, img: "https://images.unsplash.com/photo-1525351484163-7529414342d8?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "Healthy Choice", fr: "Pause Fraîcheur" },
+        name: { en: "Avocado & Poached Egg Toast", fr: "Tartine Avocat & Œuf Poché" },
+        desc: { en: "Multigrain country toast topped with smashed avocado, lemon zest, two soft poached eggs, feta crumble, and sesame seeds.", fr: "Pain de campagne aux céréales, avocat écrasé au citron, deux œufs pochés, éclats de feta et graines de sésame." } },
+      { id: 7, cat: "breakfast", price: 14.0, img: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "Sweet Morning", fr: "Douceur Matinale" },
+        name: { en: "Pancake Stack Fruits & Miel", fr: "Pancakes Fruits Rouges & Miel" },
+        desc: { en: "Three thick fluffy buttermilk pancakes layered with fresh berries, sliced banana, mascarpone cream & Tunisian floral honey.", fr: "Trois pancakes moelleux garnis de fruits rouges frais, rondelles de banane, crème mascarpone & miel pur de Tunisie." } },
+
+      // CRÊPES & WAFFLES (8)
+      { id: 8, cat: "crepes", price: 14.5, img: "https://images.unsplash.com/photo-1519676867240-f03562e64548?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "Sweet Signature", fr: "Signature Sucrée" },
+        name: { en: "Crêpe Nutella Banane & Noisettes", fr: "Crêpe Nutella Banane & Noisettes" },
+        desc: { en: "Golden crêpe filled with warm Nutella spread, caramelized banana slices, roasted hazelnuts & vanilla gelato.", fr: "Crêpe dorée généreusement garnie de Nutella fondant, banane caramélisée, noisettes torréfiées & glace vanille." } },
+      { id: 9, cat: "crepes", price: 15.5, img: "https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "Gourmet Sweet", fr: "Gourmande" },
+        name: { en: "Crêpe Speculoos Lotus & Caramel", fr: "Crêpe Speculoos Lotus & Caramel" },
+        desc: { en: "Warm folded crêpe drizzled with velvety Lotus Biscoff spread, salted butter caramel, biscuit crumble & chantilly.", fr: "Crêpe chaude nappée de pâte Speculoos Lotus, caramel au beurre salé maison, éclats de biscuits & chantilly." } },
+      { id: 10, cat: "crepes", price: 17.0, img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "Pistachio Lover", fr: "Spéciale Pistache" },
+        name: { en: "Crêpe Pistache & Chocolat Blanc", fr: "Crêpe Pistache & Chocolat Blanc" },
+        desc: { en: "Silky roasted pistachio cream, melted Belgian white chocolate, crushed Iranian pistachios, and fresh strawberries.", fr: "Crème onctueuse de pistache torréfiée, chocolat blanc belge fondant, pistaches concassées et fraises fraîches." } },
+      { id: 11, cat: "crepes", price: 16.5, img: "https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "Savory Favorite", fr: "Salée Favorite" },
+        name: { en: "Crêpe Salée Poulet & Champignons", fr: "Crêpe Salée Poulet & Champignons" },
+        desc: { en: "Savory crêpe stuffed with grilled chicken strips, sautéed mushrooms, creamy herb béchamel & melted gruyère.", fr: "Crêpe salée garnie d'émincé de poulet grillé, champignons sautés, béchamel crémeuse aux herbes & gruyère fondant." } },
+      { id: 12, cat: "crepes", price: 14.5, img: "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "Tunisian Savory", fr: "Salée Tunisienne" },
+        name: { en: "Crêpe Thon, Fromage & Œuf", fr: "Crêpe Thon, Fromage & Œuf" },
+        desc: { en: "Crispy savory crêpe filled with Mediterranean tuna, melted mozzarella, farm egg, capers, olives & mild harissa.", fr: "Crêpe salée croustillante au thon méditerranéen, mozzarella fondante, œuf, câpres, olives noires & harissa douce." } },
+      { id: 13, cat: "crepes", price: 15.5, img: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "Cheese Lovers", fr: "4 Fromages" },
+        name: { en: "Crêpe 4 Fromages & Noix", fr: "Crêpe 4 Fromages & Noix" },
+        desc: { en: "Melted mozzarella, emmental, roquefort, and aged parmesan topped with toasted walnuts and black pepper.", fr: "Quatuor fondant de mozzarella, emmental, roquefort et parmesan affiné parsemé de noix torréfiées." } },
+      { id: 14, cat: "crepes", price: 14.0, img: "https://images.unsplash.com/photo-1562376552-0d160a2f238d?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "Crispy Belgian", fr: "Gaufre Belge" },
+        name: { en: "Gaufre de Liège Chocolat & Chantilly", fr: "Gaufre de Liège Chocolat & Chantilly" },
+        desc: { en: "Caramelized pearl-sugar Belgian waffle topped with warm dark & milk chocolate sauce and fresh whipped cream.", fr: "Gaufre de Liège caramélisée nappée de chocolat belge noir & au lait chaud et crème chantilly maison." } },
+      { id: 15, cat: "crepes", price: 16.0, img: "https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "House Special", fr: "Spéciale 4.47" },
+        name: { en: "Gaufre Fruits Rouges & Pistache", fr: "Gaufre Fruits Rouges & Pistache" },
+        desc: { en: "Crisp golden waffle crowned with pistachio praline cream, fresh strawberries, raspberries & white chocolate drizzle.", fr: "Gaufre croustillante garnie de crème pralinée pistache, fraises, framboises fraîches & filet de chocolat blanc." } },
+
+      // PIZZAS & CALZONES (7)
+      { id: 16, cat: "pizzas", price: 23.5, img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "4.47 Signature", fr: "Spéciale 4.47" },
+        name: { en: "Pizza 4.47 Spéciale", fr: "Pizza 4.47 Spéciale" },
+        desc: { en: "San Marzano tomato sauce, fior di latte mozzarella, grilled beef fillet strips, merguez, mushrooms, peppers & olives.", fr: "Sauce tomate maison, mozzarella fior di latte, émincé de bœuf grillé, merguez, champignons, poivrons & olives." } },
+      { id: 17, cat: "pizzas", price: 17.5, img: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "Tunisian Favorite", fr: "Incontournable" },
+        name: { en: "Pizza Neptune (Thon & Câpres)", fr: "Pizza Neptune (Thon & Câpres)" },
+        desc: { en: "Classic Tunisian coastal pizza with rich tomato sauce, mozzarella, whole tuna chunks, red onions, capers & black olives.", fr: "La classique tunisienne : sauce tomate parfumée, mozzarella, thon entier, oignons rouges, câpres & olives noires." } },
+      { id: 18, cat: "pizzas", price: 14.5, img: "https://images.unsplash.com/photo-1595854341625-f33ee10dbf94?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "Italian Classic", fr: "Classique Italienne" },
+        name: { en: "Pizza Margherita Bufala", fr: "Pizza Margherita Bufala" },
+        desc: { en: "Wood-fired thin crust topped with crushed plum tomatoes, melted mozzarella, fresh basil leaves & Mahdia extra-virgin olive oil.", fr: "Pâte fine croustillante, sauce tomate concassée, mozzarella fondante, basilic frais & huile d'olive vierge de Mahdia." } },
+      { id: 19, cat: "pizzas", price: 21.0, img: "https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "White Base", fr: "Base Crème" },
+        name: { en: "Pizza 4 Fromages", fr: "Pizza 4 Fromages" },
+        desc: { en: "Creamy white base blended with mozzarella, gorgonzola, emmental, and aged parmesan finished with cracked pepper.", fr: "Base crème fraîche onctueuse avec mozzarella, gorgonzola, emmental et parmesan affiné au poivre concassé." } },
+      { id: 20, cat: "pizzas", price: 20.5, img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "Creamy Chicken", fr: "Poulet Crème" },
+        name: { en: "Pizza Poulet Fumé & Sauce Blanche", fr: "Pizza Poulet Fumé & Sauce Blanche" },
+        desc: { en: "Garlic cream sauce, mozzarella, tender smoked chicken breast, sautéed button mushrooms, and fresh parsley.", fr: "Sauce blanche à l'ail doux, mozzarella, blanc de poulet fumé, champignons sautés et persil frais." } },
+      { id: 21, cat: "pizzas", price: 26.5, img: "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "Mahdia Port", fr: "Fruits de Mer" },
+        name: { en: "Pizza Fruits de Mer Mahdia", fr: "Pizza Fruits de Mer Mahdia" },
+        desc: { en: "Tomato & garlic herb base loaded with Mahdia shrimp, calamari rings, mussels, mozzarella, and fresh lemon wedge.", fr: "Base tomate à l'ail et aux herbes garnie de crevettes de Mahdia, calamars, moules, mozzarella et citron frais." } },
+      { id: 22, cat: "pizzas", price: 19.5, img: "https://images.unsplash.com/photo-1536964549204-cce9eab227bd?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "Folded Oven-Baked", fr: "Chausson Soufflé" },
+        name: { en: "Calzone Poulet, Œuf & Fromage", fr: "Calzone Poulet, Œuf & Fromage" },
+        desc: { en: "Golden folded pizza pocket stuffed with spiced chicken, ricotta, mozzarella, mushrooms & a soft-baked egg.", fr: "Chausson doré au four farci au poulet épicé, ricotta, mozzarella, champignons & œuf coulant." } },
+
+      // BURGERS, TACOS & MAKLoub (8)
+      { id: 23, cat: "burgers", price: 22.0, img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "4.47 Signature", fr: "Signature 4.47" },
+        name: { en: "Burger 4.47 Double Smash", fr: "Burger 4.47 Double Smash" },
+        desc: { en: "Double seared pure beef patties, aged cheddar, caramelized onions, crispy beef bacon, smoky house sauce & fries.", fr: "Double steak pur bœuf smashé, cheddar affiné, oignons caramélisés, bacon de bœuf croustillant, sauce fumée & frites." } },
+      { id: 24, cat: "burgers", price: 19.5, img: "https://images.unsplash.com/photo-1615557960916-5f4791effe9d?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "Crunchy Favorite", fr: "Croustillant" },
+        name: { en: "Crispy Chicken Burger", fr: "Crispy Chicken Burger" },
+        desc: { en: "Buttermilk fried chicken fillet, melted emmental, crunchy slaw, pickles & honey-mustard sauce with golden fries.", fr: "Filet de poulet pané croustillant, emmental fondant, coleslaw croquant, cornichons & sauce miel-moutarde avec frites." } },
+      { id: 25, cat: "burgers", price: 18.0, img: "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "All-Time Classic", fr: "Classique" },
+        name: { en: "Cheeseburger Classique", fr: "Cheeseburger Classique" },
+        desc: { en: "Grilled beef patty, double melted cheddar, iceberg lettuce, fresh tomato, red onion & classic burger sauce with fries.", fr: "Steak de bœuf grillé, double cheddar fondant, laitue iceberg, tomate fraîche, oignon rouge & sauce burger avec frites." } },
+      { id: 26, cat: "burgers", price: 18.5, img: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "French Tacos", fr: "Tacos Gratiné" },
+        name: { en: "French Tacos Escalope Gratiné", fr: "French Tacos Escalope Gratiné" },
+        desc: { en: "Grilled tortilla packed with marinated chicken escalope, fries inside, creamy cheese & Algerian sauce, gratinated on top.", fr: "Tortilla grillée garnie d'escalope marinée, frites maison, sauce fromagère & algérienne, gratinée à la mozzarella." } },
+      { id: 27, cat: "burgers", price: 19.5, img: "https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "Double Meat", fr: "Double Viande" },
+        name: { en: "Tacos Mixte Viande Hachée & Cordon Bleu", fr: "Tacos Mixte Viande Hachée & Cordon Bleu" },
+        desc: { en: "Hearty pressed tacos filled with seasoned minced beef, crispy cordon bleu, fries, and velvety cheddar cheese sauce.", fr: "Tacos généreux garni de viande hachée épicée, cordon bleu croustillant, frites et sauce cheddar onctueuse." } },
+      { id: 28, cat: "burgers", price: 15.5, img: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "Tunisian Icon", fr: "Spécialité Tunisienne" },
+        name: { en: "Makloub Tunisien Escalope", fr: "Makloub Tunisien Escalope" },
+        desc: { en: "Wood-baked folded pizza-dough sandwich stuffed with grilled chicken, mozzarella, harissa, mechouia, fries & mayo.", fr: "Pâte à pizza pliée cuite au four garnie d'escalope grillée, mozzarella, harissa, salade méchouia, frites & mayonnaise." } },
+      { id: 29, cat: "burgers", price: 16.5, img: "https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "Oven-Baked", fr: "Cuit au Four" },
+        name: { en: "Baguette Farcie Poulet & Fromage", fr: "Baguette Farcie Poulet & Fromage" },
+        desc: { en: "Crusty stuffed baguette baked with spiced chicken, melted mozzarella, olives, and garlic herb cream, served with fries.", fr: "Baguette croustillante farcie au poulet épicé, mozzarella fondante, olives et crème à l'ail, servie avec frites." } },
+      { id: 30, cat: "burgers", price: 14.0, img: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "Light & Crispy", fr: "Croquant" },
+        name: { en: "Panini Trois Fromages & Dinde", fr: "Panini Trois Fromages & Dinde" },
+        desc: { en: "Pressed Italian ciabatta panini with smoked turkey breast, mozzarella, edam & gruyère, served with fries and salad.", fr: "Panini ciabatta pressé à la dinde fumée, mozzarella, édame et gruyère, accompagné de frites et salade verte." } },
+
+      // PASTA, GRILLS & SEAFOOD (9)
+      { id: 31, cat: "mains", price: 22.5, img: "https://images.unsplash.com/photo-1574894709920-11b28e7367e3?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "House Specialty", fr: "Spécialité Maison" },
+        name: { en: "Lasagne Bolognaise Maison", fr: "Lasagne Bolognaise Maison" },
+        desc: { en: "Slow-simmered prime beef ragù layered with fresh pasta sheets, nutmeg béchamel, and gratinated parmesan crust.", fr: "Ragù de bœuf mijoté longuement entre feuilles de pâtes fraîches, béchamel muscadée et croûte gratinée au parmesan." } },
+      { id: 32, cat: "mains", price: 21.0, img: "https://images.unsplash.com/photo-1645112411341-6c4fd023714a?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "Creamy Classic", fr: "Crémeuse" },
+        name: { en: "Penne Poulet Sauce Alfredo", fr: "Penne Poulet Sauce Alfredo" },
+        desc: { en: "Al dente penne tossed with pan-seared chicken breast, sautéed mushrooms, rich parmesan cream sauce & black pepper.", fr: "Penne al dente sautées avec blanc de poulet doré, champignons frais, sauce crème parmesan & poivre noir." } },
+      { id: 33, cat: "mains", price: 22.0, img: "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "Basil Pesto", fr: "Pesto Basilic" },
+        name: { en: "Spaghetti Pesto, Poulet & Pignons", fr: "Spaghetti Pesto, Poulet & Pignons" },
+        desc: { en: "Spaghetti coated in fragrant basil-pine nut pesto, grilled chicken strips, cherry tomatoes & shaved parmesan.", fr: "Spaghetti nappés de pesto basilic-pignons maison, émincé de poulet grillé, tomates cerises & copeaux de parmesan." } },
+      { id: 34, cat: "mains", price: 28.5, img: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "Mahdia Catch", fr: "Pêche de Mahdia" },
+        name: { en: "Spaghetti Fruits de Mer", fr: "Spaghetti Fruits de Mer" },
+        desc: { en: "Spaghetti sautéed in garlic, olive oil & cherry tomato bisque with Mahdia king prawns, calamari rings & mussels.", fr: "Spaghetti sautés à l'ail, huile d'olive & bisque de tomates cerises avec crevettes royales de Mahdia, calamars & moules." } },
+      { id: 35, cat: "mains", price: 20.5, img: "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "Charcoal Grill", fr: "Grillade" },
+        name: { en: "Escalope de Poulet Grillée", fr: "Escalope de Poulet Grillée" },
+        desc: { en: "Lemon-and-herb marinated chicken breast flame-grilled, served with roasted vegetables, sautéed potatoes & mushroom sauce.", fr: "Blanc de poulet mariné au citron et aux herbes grillé à la flamme, légumes rôtis, pommes sautées & sauce champignons." } },
+      { id: 36, cat: "mains", price: 33.0, img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "Feast Platter", fr: "Assiette Royale" },
+        name: { en: "Mixte Grillades 4.47", fr: "Mixte Grillades 4.47" },
+        desc: { en: "Chargrilled lamb chops, marinated chicken skewers, spiced merguez & beef brochette with grilled vegetables & fries.", fr: "Côtelettes d'agneau, brochettes de poulet mariné, merguez épicées & brochette de bœuf avec légumes grillés & frites." } },
+      { id: 37, cat: "mains", price: 34.0, img: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "Prime Cut", fr: "Pièce du Boucher" },
+        name: { en: "Entrecôte Grillée Sauce Poivre", fr: "Entrecôte Grillée Sauce Poivre" },
+        desc: { en: "Juicy 300g aged beef ribeye grilled to your liking, topped with green peppercorn cream sauce & crispy fries.", fr: "Entrecôte de bœuf maturée 300g grillée à votre cuisson, sauce crémeuse au poivre vert & frites croustillantes." } },
+      { id: 38, cat: "mains", price: 29.5, img: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "Fresh Daily", fr: "Arrivage du Jour" },
+        name: { en: "Daurade Royale Grillée", fr: "Daurade Royale Grillée" },
+        desc: { en: "Whole fresh Mediterranean sea bream basted with garlic, lemon & Mahdia olive oil, served with herb rice & grilled salad.", fr: "Daurade royale entière grillée à l'ail, citron & huile d'olive de Mahdia, accompagnée de riz parfumé & salade grillée." } },
+      { id: 39, cat: "mains", price: 31.0, img: "https://images.unsplash.com/photo-1559737558-2f5a35f4523b?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "Mahdia Heritage", fr: "Tradition Mahdia" },
+        name: { en: "Couscous Royal au Poisson de Mahdia", fr: "Couscous Royal au Poisson de Mahdia" },
+        desc: { en: "Hand-rolled semolina steamed in aromatic saffron-fish broth with sea bass fillet, king prawns, chickpeas & roasted peppers.", fr: "Semoule fine roulée à la main cuite au fumet safrané avec filet de loup de mer, crevettes royales, pois chiches & piments frits." } },
+
+      // COFFEE, JUICES, SHAKES & LOUNGE DRINKS (7)
+      { id: 40, cat: "drinks", price: 5.5, img: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "Barista Craft", fr: "Café Barista" },
+        name: { en: "Express / Capucin / Direct", fr: "Express / Capucin / Direct" },
+        desc: { en: "Rich Arabica-Robusta dark roast pulled to golden crema perfection—served as Tunisian capucin, direct, or Italian espresso.", fr: "Assemblage torréfié à la crème dorée — servi en capucin tunisien, direct ou expresso italien." } },
+      { id: 41, cat: "drinks", price: 10.5, img: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "Iced Favorite", fr: "Café Glacé" },
+        name: { en: "Frappuccino Caramel Macchiato", fr: "Frappuccino Caramel Macchiato" },
+        desc: { en: "Chilled double espresso blended with velvety milk, ice & vanilla, crowned with whipped cream and salted caramel.", fr: "Double expresso glacé mixé au lait onctueux et vanille, couronné de crème chantilly et caramel beurre salé." } },
+      { id: 42, cat: "drinks", price: 11.5, img: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "Terrace Refresh", fr: "Fraîcheur Terrasse" },
+        name: { en: "Mojito Vierge Fraise & Menthe", fr: "Mojito Vierge Fraise & Menthe" },
+        desc: { en: "Muddled garden mint leaves, fresh lime wedges, crushed strawberries, cane sugar & sparkling soda over crushed ice.", fr: "Feuilles de menthe fraîche pilées, citron vert, fraises écrasées, sucre de canne & eau pétillante sur glace pilée." } },
+      { id: 43, cat: "drinks", price: 12.5, img: "https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "Tropical Mocktail", fr: "Cocktail Exotique" },
+        name: { en: "Piña Colada Vierge", fr: "Piña Colada Vierge" },
+        desc: { en: "Chilled pineapple juice shaken with creamy coconut milk, crushed ice, and a fresh pineapple wedge.", fr: "Jus d'ananas frais frappé avec crème de coco onctueuse, glace pilée et tranche d'ananas frais." } },
+      { id: 44, cat: "drinks", price: 8.5, img: "https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "100% Pure", fr: "100% Frais" },
+        name: { en: "Jus d'Orange Pressé Frais", fr: "Jus d'Orange Pressé Frais" },
+        desc: { en: "Freshly squeezed Cap Bon sweet oranges pressed to order—zero added sugar, pure Mediterranean sunshine.", fr: "Oranges douces du Cap Bon pressées à la minute — sans sucre ajouté, pur soleil méditerranéen." } },
+      { id: 45, cat: "drinks", price: 12.0, img: "https://images.unsplash.com/photo-1505252585461-04db1eb84625?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "Fruit Smoothie", fr: "Smoothie Frais" },
+        name: { en: "Smoothie Fraise, Banane & Mangue", fr: "Smoothie Fraise, Banane & Mangue" },
+        desc: { en: "Velvety blend of ripe strawberries, sweet banana, and Alphonso mango chilled to creamy perfection.", fr: "Mélange velouté de fraises mûres, banane douce et mangue fraîche mixé à la perfection." } },
+      { id: 46, cat: "drinks", price: 12.5, img: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=800&q=80",
+        badge: { en: "Lounge Classic", fr: "Douceur Lounge" },
+        name: { en: "Milkshake Oreo & Thé Menthe Pignons", fr: "Milkshake Oreo & Thé Menthe Pignons" },
+        desc: { en: "Creamy vanilla-Oreo milkshake topped with chantilly, or choose traditional Tunisian mint tea with roasted pine nuts.", fr: "Milkshake onctueux vanille-Oreo avec chantilly, ou thé à la menthe traditionnel aux pignons torréfiés." } }
+    ];
+
+    /* ==========================================================================
+       3. APPLICATION STATE (LANGUAGE, SIGNED-IN USER, CART & LIVE KITCHEN TICKET)
+       ========================================================================== */
+    let currentLang = localStorage.getItem('447_lang') || 'en';
+    let currentCat = 'all';
+    let currentUser = JSON.parse(localStorage.getItem('447_user') || 'null');
+    let cart = JSON.parse(localStorage.getItem('447_cart') || '[]');
+    let activeTicket = JSON.parse(localStorage.getItem('447_ticket') || 'null');
+    let pendingItemId = null;
+    let ticketTimers = [];
+
+    /* ==========================================================================
+       4. LANGUAGE RENDERING & UI TRANSLATION
+       ========================================================================== */
+    function setLanguage(lang) {
+      currentLang = lang;
+      localStorage.setItem('447_lang', lang);
+      document.documentElement.lang = lang;
+
+      document.getElementById('btn-lang-en').classList.toggle('active', lang === 'en');
+      document.getElementById('btn-lang-fr').classList.toggle('active', lang === 'fr');
+
+      const dict = I18N[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) {
+          el.innerHTML = dict[key];
+        }
+      });
+
+      document.getElementById('floating-order-label').textContent = dict.floating_order;
+      updateAccountUI();
+      renderCategoryPills();
+      renderMenuGrid();
+      renderOrderDrawer();
+    }
+
+    function renderCategoryPills() {
+      const dict = I18N[currentLang];
+      const categories = [
+        { id: 'all', label: `${dict.cat_all} (${MENU_ITEMS.length})` },
+        { id: 'breakfast', label: `${dict.cat_breakfast} (7)` },
+        { id: 'crepes', label: `${dict.cat_crepes} (8)` },
+        { id: 'pizzas', label: `${dict.cat_pizzas} (7)` },
+        { id: 'burgers', label: `${dict.cat_burgers} (8)` },
+        { id: 'mains', label: `${dict.cat_mains} (9)` },
+        { id: 'drinks', label: `${dict.cat_drinks} (7)` }
+      ];
+
+      const bar = document.getElementById('menu-filter-bar');
+      bar.innerHTML = categories.map(c => `
+        <button type="button" class="filter-pill ${currentCat === c.id ? 'active' : ''}" onclick="selectCategory('${c.id}')">
+          ${c.label}
+        </button>
+      `).join('');
+    }
+
+    function selectCategory(catId) {
+      currentCat = catId;
+      renderCategoryPills();
+      renderMenuGrid();
+    }
+
+    function renderMenuGrid() {
+      const dict = I18N[currentLang];
+      const grid = document.getElementById('menu-grid');
+      const filtered = currentCat === 'all' ? MENU_ITEMS : MENU_ITEMS.filter(item => item.cat === currentCat);
+
+      grid.innerHTML = filtered.map(item => `
+        <article class="menu-card" onclick="handleSelectMenuItem(${item.id})" style="cursor: pointer;">
+          <div class="menu-card-img-wrap">
+            <img src="${item.img}" alt="${item.name[currentLang]}" loading="lazy"
+                 onerror="this.src='https://placehold.co/800x500/241b17/d4a359?text=4.47+Mahdia'">
+            <span class="menu-badge-overlay">${item.badge[currentLang]}</span>
+          </div>
+          <div class="menu-card-body">
+            <div>
+              <div class="menu-card-top">
+                <h3>${item.name[currentLang]}</h3>
+                <span class="menu-price">${item.price.toFixed(1)} TND</span>
+              </div>
+              <p>${item.desc[currentLang]}</p>
+            </div>
+            <div class="menu-card-footer">
+              <span class="menu-tag">${dict['cat_' + item.cat]}</span>
+              <button type="button" class="order-item-btn" onclick="event.stopPropagation(); handleSelectMenuItem(${item.id})">
+                ${dict.order_btn}
+              </button>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    /* ==========================================================================
+       5. AUTHENTICATION & DIRECT-TO-RESTAURANT ORDER FLOW
+       ========================================================================== */
+    function handleSelectMenuItem(itemId) {
+      if (!currentUser) {
+        pendingItemId = itemId;
+        openAuthModal();
+        return;
+      }
+      addItemToOrder(itemId);
+    }
+
+    function openAuthModal() {
+      if (currentUser) {
+        document.getElementById('auth-name').value = currentUser.name;
+        document.getElementById('auth-phone').value = currentUser.phone;
+        document.getElementById('auth-service').value = currentUser.service;
+      }
+      document.getElementById('auth-modal').classList.add('open');
+    }
+
+    function closeAuthModal() {
+      document.getElementById('auth-modal').classList.remove('open');
+    }
+
+    document.getElementById('auth-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('auth-name').value.trim();
+      const phone = document.getElementById('auth-phone').value.trim();
+      const service = document.getElementById('auth-service').value;
+
+      currentUser = { name, phone, service };
+      localStorage.setItem('447_user', JSON.stringify(currentUser));
+      updateAccountUI();
+      closeAuthModal();
+
+      if (pendingItemId !== null) {
+        const idToAdd = pendingItemId;
+        pendingItemId = null;
+        addItemToOrder(idToAdd);
+      } else {
+        renderOrderDrawer();
+      }
+    });
+
+    function signOutGuest() {
+      currentUser = null;
+      localStorage.removeItem('447_user');
+      updateAccountUI();
+      renderOrderDrawer();
+    }
+
+    function updateAccountUI() {
+      const btn = document.getElementById('nav-account-btn');
+      const label = document.getElementById('nav-account-label');
+      if (currentUser) {
+        btn.classList.add('signed-in');
+        label.textContent = `${currentUser.name} • ${currentUser.service.split('—')[0].trim()}`;
+      } else {
+        btn.classList.remove('signed-in');
+        label.textContent = I18N[currentLang].sign_in;
+      }
+    }
+
+    function addItemToOrder(itemId) {
+      const item = MENU_ITEMS.find(m => m.id === itemId);
+      if (!item) return;
+
+      const existing = cart.find(c => c.id === itemId);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ id: item.id, qty: 1 });
+      }
+      saveCart();
+      updateOrderBadge();
+      renderOrderDrawer();
+      openOrderDrawer();
+      showToast(`${I18N[currentLang].toast_added} <strong>${item.name[currentLang]}</strong>`);
+    }
+
+    function changeQty(itemId, delta) {
+      const idx = cart.findIndex(c => c.id === itemId);
+      if (idx === -1) return;
+      cart[idx].qty += delta;
+      if (cart[idx].qty <= 0) {
+        cart.splice(idx, 1);
+      }
+      saveCart();
+      updateOrderBadge();
+      renderOrderDrawer();
+    }
+
+    function saveCart() {
+      localStorage.setItem('447_cart', JSON.stringify(cart));
+    }
+
+    function updateOrderBadge() {
+      const totalQty = cart.reduce((sum, c) => sum + c.qty, 0);
+      document.getElementById('floating-order-count').textContent = totalQty;
+    }
+
+    function openOrderDrawer() {
+      renderOrderDrawer();
+      document.getElementById('order-drawer-backdrop').classList.add('open');
+    }
+
+    function closeOrderDrawer() {
+      document.getElementById('order-drawer-backdrop').classList.remove('open');
+    }
+
+    function renderOrderDrawer() {
+      const dict = I18N[currentLang];
+      const banner = document.getElementById('drawer-guest-banner');
+      if (currentUser) {
+        banner.innerHTML = `
+          <div>
+            <strong style="color: var(--accent-gold);">${currentUser.name}</strong> (${currentUser.phone})<br>
+            <span style="color: var(--text-muted-light);">${currentUser.service}</span>
+          </div>
+          <button type="button" onclick="signOutGuest()" style="background:transparent;border:1px solid var(--border-dark);color:var(--text-muted-light);padding:0.3rem 0.65rem;border-radius:999px;font-size:0.75rem;cursor:pointer;">
+            ${dict.sign_out}
+          </button>
+        `;
+      } else {
+        banner.innerHTML = `
+          <span>${dict.not_signed_banner}</span>
+          <button type="button" onclick="closeOrderDrawer(); openAuthModal();" class="btn btn-primary" style="padding:0.4rem 0.85rem;font-size:0.78rem;">
+            ${dict.sign_in}
+          </button>
+        `;
+      }
+
+      const listEl = document.getElementById('cart-items-list');
+      let total = 0;
+
+      if (cart.length === 0) {
+        listEl.innerHTML = `<p style="color: var(--text-muted-light); font-size: 0.9rem; text-align: center; padding: 1.5rem 0;">${dict.empty_cart}</p>`;
+      } else {
+        listEl.innerHTML = cart.map(entry => {
+          const item = MENU_ITEMS.find(m => m.id === entry.id);
+          if (!item) return '';
+          const sub = item.price * entry.qty;
+          total += sub;
+          return `
+            <div class="cart-row">
+              <div>
+                <strong style="font-size: 0.92rem; display: block;">${item.name[currentLang]}</strong>
+                <span style="font-size: 0.8rem; color: var(--accent-gold);">${sub.toFixed(1)} TND</span>
+              </div>
+              <div class="cart-qty-controls">
+                <button type="button" class="qty-btn" onclick="changeQty(${item.id}, -1)">-</button>
+                <span style="font-weight: 700; min-width: 18px; text-align: center;">${entry.qty}</span>
+                <button type="button" class="qty-btn" onclick="changeQty(${item.id}, 1)">+</button>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      document.getElementById('cart-total-price').textContent = `${total.toFixed(1)} TND`;
+      renderKitchenTicket();
+    }
+
+    function sendOrderToKitchen() {
+      if (!currentUser) {
+        closeOrderDrawer();
+        openAuthModal();
+        return;
+      }
+      if (cart.length === 0) return;
+
+      const itemsSnapshot = cart.map(entry => {
+        const item = MENU_ITEMS.find(m => m.id === entry.id);
+        return {
+          qty: entry.qty,
+          name: item ? item.name : { en: 'Item', fr: 'Article' },
+          price: item ? item.price : 0
+        };
+      });
+
+      const totalAmount = itemsSnapshot.reduce((s, i) => s + (i.price * i.qty), 0);
+      const ticketNum = '447-' + Math.floor(1000 + Math.random() * 9000);
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+      activeTicket = {
+        id: ticketNum,
+        time: timeStr,
+        customer: currentUser,
+        items: itemsSnapshot,
+        total: totalAmount,
+        stage: 1
+      };
+
+      localStorage.setItem('447_ticket', JSON.stringify(activeTicket));
+      cart = [];
+      saveCart();
+      updateOrderBadge();
+      renderOrderDrawer();
+      showToast(`${I18N[currentLang].toast_sent}<strong>${ticketNum}</strong>`);
+
+      // Simulate live kitchen progress updates
+      ticketTimers.forEach(t => clearTimeout(t));
+      ticketTimers = [
+        setTimeout(() => {
+          if (activeTicket && activeTicket.id === ticketNum) {
+            activeTicket.stage = 2;
+            localStorage.setItem('447_ticket', JSON.stringify(activeTicket));
+            renderKitchenTicket();
+          }
+        }, 4500),
+        setTimeout(() => {
+          if (activeTicket && activeTicket.id === ticketNum) {
+            activeTicket.stage = 3;
+            localStorage.setItem('447_ticket', JSON.stringify(activeTicket));
+            renderKitchenTicket();
+          }
+        }, 11000)
+      ];
+    }
+
+    function renderKitchenTicket() {
+      const container = document.getElementById('live-kitchen-ticket-container');
+      if (!activeTicket) {
+        container.innerHTML = '';
+        return;
+      }
+      const dict = I18N[currentLang];
+      const itemsSummary = activeTicket.items.map(i => `${i.qty}x ${i.name[currentLang]}`).join(', ');
+      container.innerHTML = `
+        <div class="kitchen-ticket">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+            <span style="font-size:0.74rem; font-weight:700; color:#4ade80; letter-spacing:0.08em;">${dict.ticket_title}</span>
+            <span style="font-size:0.78rem; color:var(--text-muted-light);">${activeTicket.time}</span>
+          </div>
+          <div style="font-weight:700; font-size:1.05rem; color:var(--text-light); margin-bottom:0.3rem;">
+            #${activeTicket.id} &bull; ${activeTicket.customer.name}
+          </div>
+          <div style="font-size:0.82rem; color:var(--text-muted-light); margin-bottom:0.5rem;">
+            ${activeTicket.customer.service} &bull; ${activeTicket.customer.phone}
+          </div>
+          <div style="font-size:0.84rem; color:var(--text-light); margin-bottom:0.4rem;">
+            ${itemsSummary}
+          </div>
+          <div style="font-size:0.88rem; font-weight:700; color:var(--accent-gold);">
+            Total: ${activeTicket.total.toFixed(1)} TND
+          </div>
+          <div class="status-steps">
+            <div class="status-step ${activeTicket.stage >= 1 ? 'active' : ''}">${dict.step_sent}</div>
+            <div class="status-step ${activeTicket.stage >= 2 ? 'active' : ''}">${dict.step_prep}</div>
+            <div class="status-step ${activeTicket.stage >= 3 ? 'active' : ''}">${dict.step_ready}</div>
+          </div>
+        </div>
+      `;
+    }
+
+    function showToast(htmlMsg) {
+      const toast = document.getElementById('toast-banner');
+      toast.innerHTML = htmlMsg;
+      toast.classList.add('show');
+      clearTimeout(toast._hideTimer);
+      toast._hideTimer = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 4200);
+    }
+
+    document.getElementById('reservation-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      showToast(I18N[currentLang].toast_res);
+      this.reset();
+    });
+
+    // Initialize Application on Load
+    window.addEventListener('DOMContentLoaded', () => {
+      updateOrderBadge();
+      setLanguage(currentLang);
+    });
+  </script>
+</body>
+</html>
